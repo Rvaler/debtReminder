@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		5438A9831B5EBBE60027E39C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9821B5EBBE60027E39C /* AppDelegate.swift */; };
 		5438A9861B5EBBE60027E39C /* debtReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9841B5EBBE60027E39C /* debtReminder.xcdatamodeld */; };
-		5438A9881B5EBBE60027E39C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9871B5EBBE60027E39C /* ViewController.swift */; };
 		5438A98B1B5EBBE60027E39C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5438A9891B5EBBE60027E39C /* Main.storyboard */; };
 		5438A98D1B5EBBE60027E39C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5438A98C1B5EBBE60027E39C /* Images.xcassets */; };
 		5438A9901B5EBBE60027E39C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5438A98E1B5EBBE60027E39C /* LaunchScreen.xib */; };
 		5438A99C1B5EBBE60027E39C /* debtReminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A99B1B5EBBE60027E39C /* debtReminderTests.swift */; };
+		5438A9AB1B5ECB6F0027E39C /* LendBorrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9A81B5ECB6F0027E39C /* LendBorrow.swift */; };
+		5438A9AC1B5ECB6F0027E39C /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9A91B5ECB6F0027E39C /* Money.swift */; };
+		5438A9AD1B5ECB6F0027E39C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9AA1B5ECB6F0027E39C /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +33,15 @@
 		5438A9811B5EBBE50027E39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5438A9821B5EBBE60027E39C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5438A9851B5EBBE60027E39C /* debtReminder.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = debtReminder.xcdatamodel; sourceTree = "<group>"; };
-		5438A9871B5EBBE60027E39C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5438A98A1B5EBBE60027E39C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5438A98C1B5EBBE60027E39C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5438A98F1B5EBBE60027E39C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5438A9951B5EBBE60027E39C /* debtReminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = debtReminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5438A99A1B5EBBE60027E39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5438A99B1B5EBBE60027E39C /* debtReminderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = debtReminderTests.swift; sourceTree = "<group>"; };
+		5438A9A81B5ECB6F0027E39C /* LendBorrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LendBorrow.swift; sourceTree = "<group>"; };
+		5438A9A91B5ECB6F0027E39C /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		5438A9AA1B5ECB6F0027E39C /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,11 +83,11 @@
 		5438A97F1B5EBBE50027E39C /* debtReminder */ = {
 			isa = PBXGroup;
 			children = (
+				5438A9A71B5EBD2D0027E39C /* View */,
+				5438A9A61B5EBD230027E39C /* Controller */,
+				5438A9A51B5EBD1C0027E39C /* Model */,
 				5438A9821B5EBBE60027E39C /* AppDelegate.swift */,
-				5438A9871B5EBBE60027E39C /* ViewController.swift */,
-				5438A9891B5EBBE60027E39C /* Main.storyboard */,
 				5438A98C1B5EBBE60027E39C /* Images.xcassets */,
-				5438A98E1B5EBBE60027E39C /* LaunchScreen.xib */,
 				5438A9841B5EBBE60027E39C /* debtReminder.xcdatamodeld */,
 				5438A9801B5EBBE50027E39C /* Supporting Files */,
 			);
@@ -113,6 +117,32 @@
 				5438A99A1B5EBBE60027E39C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5438A9A51B5EBD1C0027E39C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5438A9A81B5ECB6F0027E39C /* LendBorrow.swift */,
+				5438A9A91B5ECB6F0027E39C /* Money.swift */,
+				5438A9AA1B5ECB6F0027E39C /* Item.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5438A9A61B5EBD230027E39C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		5438A9A71B5EBD2D0027E39C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5438A9891B5EBBE60027E39C /* Main.storyboard */,
+				5438A98E1B5EBBE60027E39C /* LaunchScreen.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,8 +245,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5438A9881B5EBBE60027E39C /* ViewController.swift in Sources */,
+				5438A9AD1B5ECB6F0027E39C /* Item.swift in Sources */,
 				5438A9861B5EBBE60027E39C /* debtReminder.xcdatamodeld in Sources */,
+				5438A9AB1B5ECB6F0027E39C /* LendBorrow.swift in Sources */,
+				5438A9AC1B5ECB6F0027E39C /* Money.swift in Sources */,
 				5438A9831B5EBBE60027E39C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

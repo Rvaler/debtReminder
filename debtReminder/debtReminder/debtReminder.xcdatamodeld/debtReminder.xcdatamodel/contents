@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Item" representedClassName="PRODUCT_MODULE_NAME.Item" syncable="YES">
+        <attribute name="itemImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LendBorrow" representedClassName="PRODUCT_MODULE_NAME.LendBorrow" syncable="YES">
+        <attribute name="reminder" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="toFromWho" attributeType="String" syncable="YES"/>
+        <relationship name="relationItem" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Item" syncable="YES"/>
+        <relationship name="relationMoney" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Money" syncable="YES"/>
+    </entity>
+    <entity name="Money" representedClassName="PRODUCT_MODULE_NAME.Money" syncable="YES">
+        <attribute name="value" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Item" positionX="43" positionY="-192" width="128" height="73"/>
+        <element name="Money" positionX="259" positionY="-153" width="128" height="58"/>
+        <element name="LendBorrow" positionX="-36" positionY="18" width="128" height="103"/>
+    </elements>
 </model>
