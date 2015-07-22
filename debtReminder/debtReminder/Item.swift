@@ -10,7 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-@objc(Item)
 
 class Item: NSManagedObject {
 
@@ -21,7 +20,7 @@ class Item: NSManagedObject {
         return "Item"
     }
     
-    static func createItemWithName(inName: String, inImage: NSData?)
+    static func createItemWithName(inName: String, inImage: NSData?) -> Item
     {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedObjectContext: NSManagedObjectContext! = appDelegate.managedObjectContext
@@ -33,9 +32,10 @@ class Item: NSManagedObject {
             newItem.itemImage = newItemImage
         }
     
-        var err:NSErrorPointer = nil
-        let fetchRequest = NSFetchRequest(entityName: self.getClassName())
-        managedObjectContext.save(err)
+        return newItem
+//        var err:NSErrorPointer = nil
+//        let fetchRequest = NSFetchRequest(entityName: self.getClassName())
+//        managedObjectContext.save(err)
     }
     
 }

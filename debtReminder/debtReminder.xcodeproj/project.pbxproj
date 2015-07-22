@@ -17,6 +17,7 @@
 		5438A9AC1B5ECB6F0027E39C /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9A91B5ECB6F0027E39C /* Money.swift */; };
 		5438A9AD1B5ECB6F0027E39C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9AA1B5ECB6F0027E39C /* Item.swift */; };
 		5438A9AF1B5ECE6B0027E39C /* MyDebtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9AE1B5ECE6B0027E39C /* MyDebtsViewController.swift */; };
+		5438A9B11B5FCBC40027E39C /* NewDebtCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9B01B5FCBC40027E39C /* NewDebtCreationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		5438A9A91B5ECB6F0027E39C /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		5438A9AA1B5ECB6F0027E39C /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		5438A9AE1B5ECE6B0027E39C /* MyDebtsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDebtsViewController.swift; sourceTree = "<group>"; };
+		5438A9B01B5FCBC40027E39C /* NewDebtCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDebtCreationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		5438A9A61B5EBD230027E39C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5438A9B01B5FCBC40027E39C /* NewDebtCreationViewController.swift */,
 				5438A9AE1B5ECE6B0027E39C /* MyDebtsViewController.swift */,
 			);
 			name = Controller;
@@ -253,6 +256,7 @@
 				5438A9861B5EBBE60027E39C /* debtReminder.xcdatamodeld in Sources */,
 				5438A9AB1B5ECB6F0027E39C /* LendBorrow.swift in Sources */,
 				5438A9AC1B5ECB6F0027E39C /* Money.swift in Sources */,
+				5438A9B11B5FCBC40027E39C /* NewDebtCreationViewController.swift in Sources */,
 				5438A9831B5EBBE60027E39C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

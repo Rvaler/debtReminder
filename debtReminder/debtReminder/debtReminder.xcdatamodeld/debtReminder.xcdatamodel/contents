@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Item" representedClassName="PRODUCT_MODULE_NAME.Item" syncable="YES">
+    <entity name="Item" representedClassName="debtReminder.Item" syncable="YES">
         <attribute name="itemImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="LendBorrow" representedClassName="PRODUCT_MODULE_NAME.LendBorrow" syncable="YES">
+    <entity name="LendBorrow" representedClassName="debtReminder.LendBorrow" syncable="YES">
         <attribute name="reminder" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="toFromWho" attributeType="String" syncable="YES"/>
         <relationship name="relationItem" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Item" syncable="YES"/>
         <relationship name="relationMoney" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Money" syncable="YES"/>
     </entity>
-    <entity name="Money" representedClassName="PRODUCT_MODULE_NAME.Money" syncable="YES">
+    <entity name="Money" representedClassName="debtReminder.Money" syncable="YES">
         <attribute name="value" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>

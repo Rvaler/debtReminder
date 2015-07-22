@@ -12,7 +12,7 @@ class MyDebtsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
 
@@ -31,5 +31,16 @@ class MyDebtsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: - Button Actions
 
+    @IBAction func actionCreateNewDebt(sender: AnyObject) {
+        
+        performSegueWithIdentifier("segueCreateNewDebt", sender: self)
+    }
+    
+    
+    
+    @IBAction func cancelNewDebtCreation(segue:UIStoryboardSegue){
+    }
 }
