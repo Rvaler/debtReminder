@@ -13,12 +13,13 @@
 		5438A98D1B5EBBE60027E39C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5438A98C1B5EBBE60027E39C /* Images.xcassets */; };
 		5438A9901B5EBBE60027E39C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5438A98E1B5EBBE60027E39C /* LaunchScreen.xib */; };
 		5438A99C1B5EBBE60027E39C /* debtReminderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A99B1B5EBBE60027E39C /* debtReminderTests.swift */; };
-		5438A9AB1B5ECB6F0027E39C /* LendBorrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9A81B5ECB6F0027E39C /* LendBorrow.swift */; };
 		5438A9AC1B5ECB6F0027E39C /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9A91B5ECB6F0027E39C /* Money.swift */; };
 		5438A9AD1B5ECB6F0027E39C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9AA1B5ECB6F0027E39C /* Item.swift */; };
 		5438A9AF1B5ECE6B0027E39C /* MyDebtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9AE1B5ECE6B0027E39C /* MyDebtsViewController.swift */; };
 		5438A9B11B5FCBC40027E39C /* NewDebtCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9B01B5FCBC40027E39C /* NewDebtCreationViewController.swift */; };
 		5438A9B31B6017DB0027E39C /* AllDebtsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9B21B6017DB0027E39C /* AllDebtsTableViewCell.swift */; };
+		54CEBCC81B6133D400BB43CA /* DBRColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CEBCC71B6133D400BB43CA /* DBRColors.swift */; };
+		54D5C3E21B60602B009A8CF9 /* LendBorrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D5C3E11B60602B009A8CF9 /* LendBorrow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,12 +43,13 @@
 		5438A9951B5EBBE60027E39C /* debtReminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = debtReminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5438A99A1B5EBBE60027E39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5438A99B1B5EBBE60027E39C /* debtReminderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = debtReminderTests.swift; sourceTree = "<group>"; };
-		5438A9A81B5ECB6F0027E39C /* LendBorrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LendBorrow.swift; sourceTree = "<group>"; };
 		5438A9A91B5ECB6F0027E39C /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		5438A9AA1B5ECB6F0027E39C /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		5438A9AE1B5ECE6B0027E39C /* MyDebtsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDebtsViewController.swift; sourceTree = "<group>"; };
 		5438A9B01B5FCBC40027E39C /* NewDebtCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDebtCreationViewController.swift; sourceTree = "<group>"; };
 		5438A9B21B6017DB0027E39C /* AllDebtsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllDebtsTableViewCell.swift; sourceTree = "<group>"; };
+		54CEBCC71B6133D400BB43CA /* DBRColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBRColors.swift; sourceTree = "<group>"; };
+		54D5C3E11B60602B009A8CF9 /* LendBorrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LendBorrow.swift; path = ../LendBorrow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,8 @@
 		5438A9A51B5EBD1C0027E39C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5438A9A81B5ECB6F0027E39C /* LendBorrow.swift */,
+				54CEBCC71B6133D400BB43CA /* DBRColors.swift */,
+				54D5C3E11B60602B009A8CF9 /* LendBorrow.swift */,
 				5438A9A91B5ECB6F0027E39C /* Money.swift */,
 				5438A9AA1B5ECB6F0027E39C /* Item.swift */,
 			);
@@ -255,12 +258,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5438A9AD1B5ECB6F0027E39C /* Item.swift in Sources */,
+				54D5C3E21B60602B009A8CF9 /* LendBorrow.swift in Sources */,
 				5438A9AF1B5ECE6B0027E39C /* MyDebtsViewController.swift in Sources */,
 				5438A9861B5EBBE60027E39C /* debtReminder.xcdatamodeld in Sources */,
-				5438A9AB1B5ECB6F0027E39C /* LendBorrow.swift in Sources */,
 				5438A9B31B6017DB0027E39C /* AllDebtsTableViewCell.swift in Sources */,
 				5438A9AC1B5ECB6F0027E39C /* Money.swift in Sources */,
 				5438A9B11B5FCBC40027E39C /* NewDebtCreationViewController.swift in Sources */,
+				54CEBCC81B6133D400BB43CA /* DBRColors.swift in Sources */,
 				5438A9831B5EBBE60027E39C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +463,7 @@
 				5438A9A11B5EBBE60027E39C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5438A9A21B5EBBE60027E39C /* Build configuration list for PBXNativeTarget "debtReminderTests" */ = {
 			isa = XCConfigurationList;
@@ -467,6 +472,7 @@
 				5438A9A41B5EBBE60027E39C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

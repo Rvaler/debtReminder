@@ -5,6 +5,7 @@
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="LendBorrow" representedClassName="debtReminder.LendBorrow" syncable="YES">
+        <attribute name="debtFlag" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="reminder" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="toFromWho" attributeType="String" syncable="YES"/>
         <relationship name="relationItem" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Item" syncable="YES"/>
@@ -15,7 +16,7 @@
     </entity>
     <elements>
         <element name="Item" positionX="43" positionY="-192" width="128" height="73"/>
+        <element name="LendBorrow" positionX="-36" positionY="18" width="128" height="120"/>
         <element name="Money" positionX="259" positionY="-153" width="128" height="58"/>
-        <element name="LendBorrow" positionX="-36" positionY="18" width="128" height="103"/>
     </elements>
 </model>

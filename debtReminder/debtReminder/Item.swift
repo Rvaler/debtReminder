@@ -33,9 +33,6 @@ class Item: NSManagedObject {
         }
     
         return newItem
-//        var err:NSErrorPointer = nil
-//        let fetchRequest = NSFetchRequest(entityName: self.getClassName())
-//        managedObjectContext.save(err)
     }
     
 }

@@ -11,6 +11,8 @@ import UIKit
 class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableViewAllDebts: UITableView!
+    @IBOutlet weak var buttonLend: UIButton!
+    @IBOutlet weak var buttonBorrow: UIButton!
     
     var myDebtsList : NSArray?
     
@@ -20,6 +22,11 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.tableViewAllDebts.dataSource = self
         self.tableViewAllDebts.delegate = self
+        
+        self.navigationItem.title = "Debt Reminder"
+        self.view.backgroundColor = DBRColors.DBRGrayColor
+        self.tableViewAllDebts.backgroundColor = UIColor.clearColor()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -56,6 +63,7 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         {
             let debtObject: LendBorrow? = myDebtsList?.objectAtIndex(indexPath.row) as? LendBorrow
             let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("allDebtsCell") as! AllDebtsTableViewCell
+            debtCell.backgroundColor = UIColor.clearColor()
             
             //moneyObject
             if let moneyObject = debtObject?.relationMoney
@@ -68,12 +76,12 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
                 debtCell.labelDebtItem.text = itemObject.itemName
             }
             
-            
             debtCell.labelInDebtPerson.text = debtObject?.toFromWho
             return debtCell
         }else{
             
             let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("reuse identifier") as! AllDebtsTableViewCell
+            debtCell.backgroundColor = UIColor.clearColor()
             return debtCell
         }
     }
@@ -86,11 +94,26 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //MARK: - Button Actions
 
-    @IBAction func actionCreateNewDebt(sender: AnyObject) {
+    @IBAction func actionLendSomething(sender: AnyObject) {
+        //self.prepareForSegue("segueCreateNewDebt", sender: self)
         
-        performSegueWithIdentifier("segueCreateNewDebt", sender: self)
+        performSegueWithIdentifier("segueCreateNewDebt", sender: sender)
     }
     
+    @IBAction func actionBorrowSomething(sender: AnyObject) {
+        performSegueWithIdentifier("segueCreateNewDebt", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (sender?.restorationIdentifier == "LendButton")
+        {
+            let viewController:NewDebtCreationViewController = segue.destinationViewController as! NewDebtCreationViewController
+            viewController.debtFlag = false
+        }else if (sender?.restorationIdentifier == "BorrowButton"){
+            let viewController:NewDebtCreationViewController = segue.destinationViewController as! NewDebtCreationViewController
+            viewController.debtFlag = true
+        }
+    }
     
     
     @IBAction func cancelNewDebtCreation(segue:UIStoryboardSegue){

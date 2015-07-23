@@ -1,34 +1,35 @@
 //
 //  LendBorrow.swift
-//  
+//  debtReminder
 //
-//  Created by Rafael Valer on 7/21/15.
-//
+//  Created by Rafael Valer on 7/22/15.
+//  Copyright (c) 2015 RafaelValer. All rights reserved.
 //
 
 import Foundation
 import CoreData
 import UIKit
 
-
 class LendBorrow: NSManagedObject {
 
-    @NSManaged var toFromWho: String
     @NSManaged var reminder: NSDate
+    @NSManaged var toFromWho: String
+    @NSManaged var debtFlag: NSNumber // TRUE = borrowing, FALSE = lending
     @NSManaged var relationItem: Item
     @NSManaged var relationMoney: Money
-    
+
     static func getClassName() -> String{
         return "LendBorrow"
     }
     
-    static func createDebtWithItem(item: Item?, money: Money?, inToFromWho: String, inReminder: NSDate?){
+    static func createDebtWithItem(item: Item?, money: Money?, inToFromWho: String, inReminder: NSDate?, inDebt: Bool){
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedObjectContext: NSManagedObjectContext! = appDelegate.managedObjectContext
         
         var newDebt: LendBorrow = NSEntityDescription.insertNewObjectForEntityForName(self.getClassName(), inManagedObjectContext: managedObjectContext) as! LendBorrow
         
+        newDebt.debtFlag = inDebt
         newDebt.toFromWho = inToFromWho
         if let newDebtReminder = inReminder {
             newDebt.reminder = newDebtReminder
@@ -66,5 +67,4 @@ class LendBorrow: NSManagedObject {
             return nil
         }
     }
-    
 }

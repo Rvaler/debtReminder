@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class NewDebtCreationViewController: UIViewController {
+class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var segmentControlSelectedDebt: UISegmentedControl!
     @IBOutlet weak var textFieldOtherPerson: UITextField!
@@ -17,9 +17,15 @@ class NewDebtCreationViewController: UIViewController {
     @IBOutlet weak var textFieldDebtMoneyValue: UITextField!
     @IBOutlet weak var imageViewItemImage: UIImageView!
     
+    /* indicates if lending or borrowing
+    true = borrowing
+    false = lending */
+    var debtFlag : Bool?
+    var imagePicker: UIImagePickerController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.takePicture()
         // Do any additional setup after loading the view.
     }
 
@@ -51,28 +57,76 @@ class NewDebtCreationViewController: UIViewController {
         }
 
     }
-
+    
     @IBAction func actionCreateNewDebt(sender: AnyObject) {
         
+        if (self.checkFiledFields() == true)
+        {
+            switch segmentControlSelectedDebt.selectedSegmentIndex
+            {
+            case 0:
+                // Money Debt Selected
+                let moneyText = self.textFieldDebtMoneyValue.text as NSString
+                let moneyObject: Money = Money.createMoneyWithValue(moneyText.floatValue)
+                LendBorrow.createDebtWithItem(nil, money: moneyObject, inToFromWho: textFieldOtherPerson.text, inReminder: nil, inDebt: debtFlag!)
+                
+            case 1:
+                // Stuff Debt Selected
+                let itemObject : Item = Item.createItemWithName(textFieldItemDescription.text, inImage: nil)
+                LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: textFieldOtherPerson.text, inReminder: nil, inDebt: debtFlag!)
+                
+            default:
+                break
+            }
+            
+            self.performSegueWithIdentifier("unwindSegueToDebtsList", sender: self)
+        }
+        
+    }
+    
+    // returns true if everythings ok
+    func checkFiledFields() -> Bool
+    {
         switch segmentControlSelectedDebt.selectedSegmentIndex
         {
         case 0:
             // Money Debt Selected
-            let moneyText = self.textFieldDebtMoneyValue.text as NSString
-            let moneyObject: Money = Money.createMoneyWithValue(moneyText.floatValue)
-            LendBorrow.createDebtWithItem(nil, money: moneyObject, inToFromWho: textFieldOtherPerson.text, inReminder: nil)
+            let moneyValue = textFieldDebtMoneyValue.text as NSString
+            if (textFieldOtherPerson.text != "" && moneyValue.floatValue > 0)
+            {
+                return true
+            }
+            return false
             
         case 1:
             // Stuff Debt Selected
-            let itemObject : Item = Item.createItemWithName(textFieldItemDescription.text, inImage: nil)
-            LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: textFieldOtherPerson.text, inReminder: nil)
-        
+            if (textFieldOtherPerson.text != "" && textFieldItemDescription != "")
+            {
+                return true
+            }
+            return false
+            
         default:
-            break
+            return false
         }
+    }
+    
+    
+    //MAKE - camera methods
+    
+    func takePicture(){
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
         
-        self.performSegueWithIdentifier("unwindSegueToDebtsList", sender: self)
-        
+        presentViewController(imagePicker, animated: true) { () -> Void in
+            //
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        imageViewItemImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
     
     
