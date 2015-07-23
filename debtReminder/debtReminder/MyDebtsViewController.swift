@@ -23,10 +23,7 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tableViewAllDebts.dataSource = self
         self.tableViewAllDebts.delegate = self
         
-        self.navigationItem.title = "Debt Reminder"
-        self.view.backgroundColor = DBRColors.DBRGrayColor
-        self.tableViewAllDebts.backgroundColor = UIColor.clearColor()
-        
+        self.setViewLayout()
         // Do any additional setup after loading the view.
     }
 
@@ -35,6 +32,20 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.loadTableViewData()
+    }
+    
+    func setViewLayout()
+    {
+        self.navigationItem.title = "Debt Reminder"
+        
+        self.tableViewAllDebts.separatorColor = DBRColors.DBRBlackColor
+        self.tableViewAllDebts.backgroundColor = UIColor.clearColor()
+        self.view.backgroundColor = DBRColors.DBRGrayColor
+        self.buttonBorrow.tintColor = DBRColors.DBRBlackColor
+        self.buttonLend.tintColor = DBRColors.DBRBlackColor
+    }
 
     /*
     // MARK: - Navigation
@@ -63,21 +74,35 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         {
             let debtObject: LendBorrow? = myDebtsList?.objectAtIndex(indexPath.row) as? LendBorrow
             let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("allDebtsCell") as! AllDebtsTableViewCell
-            debtCell.backgroundColor = UIColor.clearColor()
+            
+            var debtDescriptionString : String!
+            if(debtObject?.debtFlag == true){
+                debtDescriptionString = "Borrowed"
+            }else{
+                debtDescriptionString = "Lent"
+            }
             
             //moneyObject
             if let moneyObject = debtObject?.relationMoney
             {
-                debtCell.labelDebtItem.text = moneyObject.value.stringValue
+                debtCell.labelDebtItem.text = "\(debtDescriptionString) R$ \(moneyObject.value.stringValue)"
             }
             //itemObject
             else if let itemObject = debtObject?.relationItem
             {
-                debtCell.labelDebtItem.text = itemObject.itemName
+                if let cellImage = itemObject.itemImage
+                {
+                    debtCell.imageViewDebtImage.image = UIImage(data: cellImage)
+                }
+                debtCell.labelDebtItem.text = "\(debtDescriptionString) \(itemObject.itemName)"
             }
             
+            debtCell.imageViewDebtImage.backgroundColor = UIColor.grayColor()
+            debtCell.imageViewDebtImage.layer.cornerRadius = 10
+            debtCell.imageViewDebtImage.clipsToBounds = true
             debtCell.labelInDebtPerson.text = debtObject?.toFromWho
             return debtCell
+            
         }else{
             
             let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("reuse identifier") as! AllDebtsTableViewCell

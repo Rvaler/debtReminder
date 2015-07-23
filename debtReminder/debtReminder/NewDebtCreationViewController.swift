@@ -59,7 +59,7 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
     }
     
     @IBAction func actionCreateNewDebt(sender: AnyObject) {
-        
+    
         if (self.checkFiledFields() == true)
         {
             switch segmentControlSelectedDebt.selectedSegmentIndex
@@ -72,7 +72,15 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
                 
             case 1:
                 // Stuff Debt Selected
-                let itemObject : Item = Item.createItemWithName(textFieldItemDescription.text, inImage: nil)
+                
+                var itemObject : Item?
+                if let imageItem = self.imageViewItemImage.image
+                {
+                    let imageData : NSData = UIImagePNGRepresentation(imageItem)
+                    itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: imageData)
+                }else{
+                    itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: nil)
+                }
                 LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: textFieldOtherPerson.text, inReminder: nil, inDebt: debtFlag!)
                 
             default:
@@ -84,6 +92,9 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
         
     }
     
+    @IBAction func phoyo(sender: AnyObject) {
+        self.takePicture()
+    }
     // returns true if everythings ok
     func checkFiledFields() -> Bool
     {

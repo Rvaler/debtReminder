@@ -17,6 +17,9 @@ class AllDebtsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.labelInDebtPerson.textColor = DBRColors.DBRBlackColor
+        self.labelDebtItem.textColor = DBRColors.DBRYellowColor
+        self.backgroundColor = UIColor.clearColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

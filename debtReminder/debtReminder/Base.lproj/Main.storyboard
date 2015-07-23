@@ -16,31 +16,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Zac-ic-PCv">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="104" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Zac-ic-PCv">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="546"/>
+                                <inset key="separatorInset" minX="25" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="allDebtsCell" rowHeight="110" id="yRq-RA-NWk" customClass="AllDebtsTableViewCell" customModule="debtReminder" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="allDebtsCell" rowHeight="104" id="yRq-RA-NWk" customClass="AllDebtsTableViewCell" customModule="debtReminder" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yRq-RA-NWk" id="h6G-kw-coa">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eiL-Gz-8w8">
-                                                    <rect key="frame" x="15" y="20" width="70" height="70"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaM-Mt-92t">
+                                                    <rect key="frame" x="117" y="24" width="63" height="28"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg5-bP-xUM">
+                                                    <rect key="frame" x="117" y="56" width="39" height="22"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eiL-Gz-8w8">
+                                                    <rect key="frame" x="25" y="17" width="70" height="70"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="T6W-jt-8wc"/>
+                                                        <constraint firstAttribute="height" constant="70" id="zLI-Np-yrq"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Person" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaM-Mt-92t">
-                                                    <rect key="frame" x="101" y="30" width="54" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg5-bP-xUM">
-                                                    <rect key="frame" x="101" y="59" width="40" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gaM-Mt-92t" firstAttribute="leading" secondItem="eiL-Gz-8w8" secondAttribute="trailing" constant="22" id="5cv-Tp-zoI"/>
+                                                <constraint firstItem="eiL-Gz-8w8" firstAttribute="top" secondItem="gaM-Mt-92t" secondAttribute="bottom" constant="-34" id="dkU-xD-BBA"/>
+                                                <constraint firstAttribute="centerY" secondItem="eiL-Gz-8w8" secondAttribute="centerY" id="iEC-if-nzx"/>
+                                                <constraint firstItem="yg5-bP-xUM" firstAttribute="leading" secondItem="eiL-Gz-8w8" secondAttribute="trailing" constant="22" id="qce-PH-yYi"/>
+                                                <constraint firstItem="yg5-bP-xUM" firstAttribute="top" secondItem="eiL-Gz-8w8" secondAttribute="bottom" constant="-31" id="saF-9F-lpQ"/>
+                                                <constraint firstItem="eiL-Gz-8w8" firstAttribute="leading" secondItem="h6G-kw-coa" secondAttribute="leading" constant="25" id="wzg-7k-76t"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imageViewDebtImage" destination="eiL-Gz-8w8" id="WSx-S4-AOa"/>
@@ -50,12 +63,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="BorrowButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEq-jW-Jzi">
-                                <rect key="frame" x="300" y="556" width="300" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="BorrowButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oEq-jW-Jzi">
+                                <rect key="frame" x="300" y="546" width="290" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="R5c-W6-r1S"/>
                                 </constraints>
-                                <state key="normal" title="Borrow">
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Borrow" backgroundImage="button_Borrow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -63,13 +77,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="LendButton" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1iq-Ar-y2s">
-                                <rect key="frame" x="0.0" y="556" width="300" height="44"/>
+                                <rect key="frame" x="10" y="546" width="290" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="cXH-5C-A81"/>
                                 </constraints>
-                                <state key="normal" title="Lend">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Lend" backgroundImage="button_Lend"/>
                                 <connections>
                                     <action selector="actionLendSomething:" destination="v4E-bb-dHF" eventType="touchUpInside" id="pw9-jX-3vL"/>
                                 </connections>
@@ -79,15 +92,15 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Zac-ic-PCv" secondAttribute="trailing" id="4qa-Yh-QgR"/>
                             <constraint firstItem="Zac-ic-PCv" firstAttribute="top" secondItem="UG9-gG-P0L" secondAttribute="top" id="CgH-CA-g60"/>
-                            <constraint firstItem="1iq-Ar-y2s" firstAttribute="leading" secondItem="UG9-gG-P0L" secondAttribute="leading" id="HlJ-eQ-ztB"/>
+                            <constraint firstItem="1iq-Ar-y2s" firstAttribute="leading" secondItem="UG9-gG-P0L" secondAttribute="leading" constant="10" id="HlJ-eQ-ztB"/>
                             <constraint firstItem="Zac-ic-PCv" firstAttribute="leading" secondItem="UG9-gG-P0L" secondAttribute="leading" id="Mti-HJ-fAA"/>
                             <constraint firstItem="oEq-jW-Jzi" firstAttribute="width" secondItem="1iq-Ar-y2s" secondAttribute="width" id="SYn-aW-s3o"/>
-                            <constraint firstAttribute="bottom" secondItem="1iq-Ar-y2s" secondAttribute="bottom" id="Zro-82-Trc"/>
+                            <constraint firstAttribute="bottom" secondItem="1iq-Ar-y2s" secondAttribute="bottom" constant="10" id="Zro-82-Trc"/>
                             <constraint firstItem="oEq-jW-Jzi" firstAttribute="top" secondItem="Zac-ic-PCv" secondAttribute="bottom" id="dSB-dZ-tMq"/>
                             <constraint firstItem="oEq-jW-Jzi" firstAttribute="leading" secondItem="1iq-Ar-y2s" secondAttribute="trailing" id="dgN-TQ-y2d"/>
-                            <constraint firstAttribute="trailing" secondItem="oEq-jW-Jzi" secondAttribute="trailing" id="jGD-hm-WR3"/>
+                            <constraint firstAttribute="trailing" secondItem="oEq-jW-Jzi" secondAttribute="trailing" constant="10" id="jGD-hm-WR3"/>
                             <constraint firstItem="1iq-Ar-y2s" firstAttribute="top" secondItem="Zac-ic-PCv" secondAttribute="bottom" id="nV2-5l-EDv"/>
-                            <constraint firstItem="ZEE-Ko-xq6" firstAttribute="top" secondItem="oEq-jW-Jzi" secondAttribute="bottom" id="tuJ-aH-L8h"/>
+                            <constraint firstItem="ZEE-Ko-xq6" firstAttribute="top" secondItem="oEq-jW-Jzi" secondAttribute="bottom" constant="10" id="tuJ-aH-L8h"/>
                             <constraint firstItem="oEq-jW-Jzi" firstAttribute="top" secondItem="Zac-ic-PCv" secondAttribute="bottom" id="zgn-u7-eI6"/>
                         </constraints>
                         <variation key="default">
@@ -167,6 +180,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="16P-uh-hd7">
+                                <rect key="frame" x="26" y="123" width="40" height="30"/>
+                                <state key="normal" title="photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="phoyo:" destination="Scc-KQ-Kt5" eventType="touchUpInside" id="bd2-fq-sbE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -202,4 +224,8 @@
             <point key="canvasLocation" x="-1104" y="2778"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="button_Borrow" width="351" height="96"/>
+        <image name="button_Lend" width="351" height="96"/>
+    </resources>
 </document>

@@ -13,7 +13,7 @@ import UIKit
 
 class Item: NSManagedObject {
 
-    @NSManaged var itemImage: NSData
+    @NSManaged var itemImage: NSData?
     @NSManaged var itemName: String
 
     static func getClassName() -> String{
