@@ -17,6 +17,14 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var textFieldDebtMoneyValue: UITextField!
     @IBOutlet weak var imageViewItemImage: UIImageView!
     
+    @IBOutlet weak var buttonPhotoPicker: UIButton!
+    @IBOutlet weak var barButtonCancel: UIBarButtonItem!
+    @IBOutlet weak var barButtonCreate: UIBarButtonItem!
+    
+    var itemDescriptionUnderline: CALayer?
+    var debtMoneyValueUnderline: CALayer?
+    var otherPersonUnderline: CALayer?
+    
     /* indicates if lending or borrowing
     true = borrowing
     false = lending */
@@ -25,13 +33,81 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.takePicture()
+        self.setViewLayout()
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setViewLayout(){
+        barButtonCancel.tintColor = DBRColors.DBRRedColor
+        barButtonCreate.tintColor = DBRColors.DBRGreenColor
+        barButtonCreate.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!], forState: UIControlState.Normal)
+        barButtonCancel.setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!], forState: UIControlState.Normal)
+        segmentControlSelectedDebt.tintColor = DBRColors.DBRBlackColor
+        
+        textFieldDebtMoneyValue.textColor = DBRColors.DBRBlackColor
+        textFieldItemDescription.textColor = DBRColors.DBRBlackColor
+        textFieldOtherPerson.textColor = DBRColors.DBRBlackColor
+        imageViewItemImage.layer.borderWidth = 0.5
+        imageViewItemImage.layer.cornerRadius = 15
+        imageViewItemImage.clipsToBounds = true
+        
+        otherPersonUnderline = DBRLayers.DBRcreateUnderline(textFieldOtherPerson, color: DBRColors.DBRBlackColor)
+        self.setMoneyViewLayout()
+        self.textFieldOtherPerson.becomeFirstResponder()
+    }
+    
+    func setStuffViewLayout()
+    {
+        self.textFieldDebtMoneyValue.hidden = true
+        self.textFieldItemDescription.hidden = false
+        self.imageViewItemImage.hidden = false
+        self.buttonPhotoPicker.hidden = false
+        
+        self.textFieldOtherPerson.tintColor = DBRColors.DBRBlackColor
+        self.textFieldItemDescription.tintColor = DBRColors.DBRBlackColor
+        
+        if self.debtFlag == true{
+            self.textFieldOtherPerson.placeholder = "From who are you borrowing?"
+            self.textFieldItemDescription.placeholder = "What are you borrowing?"
+        }else{
+            self.textFieldOtherPerson.placeholder = "To whom are you lending?"
+            self.textFieldItemDescription.placeholder = "What are you lending?"
+        }
+        
+        itemDescriptionUnderline = DBRLayers.DBRcreateUnderline(self.textFieldItemDescription, color: DBRColors.DBRBlackColor)
+        if let underlineDebtValue = self.debtMoneyValueUnderline
+        {
+            underlineDebtValue.backgroundColor = UIColor.clearColor().CGColor
+        }
+    }
+    
+    func setMoneyViewLayout()
+    {
+        self.textFieldItemDescription.hidden = true
+        self.imageViewItemImage.hidden = true
+        self.buttonPhotoPicker.hidden = true
+        self.textFieldDebtMoneyValue.hidden = false
+        
+        self.textFieldDebtMoneyValue.tintColor = DBRColors.DBRBlackColor
+        self.textFieldOtherPerson.tintColor = DBRColors.DBRBlackColor
+        
+        if self.debtFlag == true{
+            self.textFieldOtherPerson.placeholder = "From who are you borrowing?"
+        }else{
+            self.textFieldOtherPerson.placeholder = "To whom are you lending?"
+        }
+        self.textFieldDebtMoneyValue.placeholder = "How much?"
+        
+        debtMoneyValueUnderline = DBRLayers.DBRcreateUnderline(textFieldDebtMoneyValue, color: DBRColors.DBRBlackColor)
+        if let underlineItemDescription = itemDescriptionUnderline
+        {
+            underlineItemDescription.backgroundColor = UIColor.clearColor().CGColor
+        }
     }
     
     // MARK: - Responsive Methods
@@ -42,16 +118,10 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
         {
         case 0:
             // Money Debt Selected
-            self.textFieldItemDescription.hidden = true
-            self.imageViewItemImage.hidden = true
-            self.textFieldDebtMoneyValue.hidden = false
-            
+            self.setMoneyViewLayout()
         case 1:
             // Stuff Debt Selected
-            self.textFieldDebtMoneyValue.hidden = true
-            self.textFieldItemDescription.hidden = false
-            self.imageViewItemImage.hidden = false
-            
+            self.setStuffViewLayout()
         default:
             break
         }
@@ -76,12 +146,24 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
                 var itemObject : Item?
                 if let imageItem = self.imageViewItemImage.image
                 {
-                    let imageData : NSData = UIImagePNGRepresentation(imageItem)
+                    //let imageData : NSData = UIImagePNGRepresentation(imageItem)
+                    let imageData:NSData = UIImageJPEGRepresentation(imageItem, 0.6)
                     itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: imageData)
                 }else{
                     itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: nil)
                 }
-                LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: textFieldOtherPerson.text, inReminder: nil, inDebt: debtFlag!)
+                
+                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: self.textFieldOtherPerson.text, inReminder: nil, inDebt: self.debtFlag!)
+//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+//                    // do some task
+//                    println("salvando")
+//                    LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: self.textFieldOtherPerson.text, inReminder: nil, inDebt: self.debtFlag!)
+//                    print("acabou")
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        // update some UI
+//                    }
+//                }
                 
             default:
                 break
@@ -91,10 +173,18 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
         }
         
     }
-    
-    @IBAction func phoyo(sender: AnyObject) {
-        self.takePicture()
+
+    // choose item photo
+    @IBAction func actionPickPhoto(sender: AnyObject) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        
+        presentViewController(imagePicker, animated: true) { () -> Void in
+            //
+        }
     }
+    
     // returns true if everythings ok
     func checkFiledFields() -> Bool
     {
@@ -124,16 +214,6 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
     
     
     //MAKE - camera methods
-    
-    func takePicture(){
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        
-        presentViewController(imagePicker, animated: true) { () -> Void in
-            //
-        }
-    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)

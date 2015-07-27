@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		542AEA7C1B619A8A000ED83D /* DBRLayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542AEA7B1B619A8A000ED83D /* DBRLayers.swift */; };
 		5438A9831B5EBBE60027E39C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9821B5EBBE60027E39C /* AppDelegate.swift */; };
 		5438A9861B5EBBE60027E39C /* debtReminder.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5438A9841B5EBBE60027E39C /* debtReminder.xcdatamodeld */; };
 		5438A98B1B5EBBE60027E39C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5438A9891B5EBBE60027E39C /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		542AEA7B1B619A8A000ED83D /* DBRLayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBRLayers.swift; sourceTree = "<group>"; };
 		5438A97D1B5EBBE50027E39C /* debtReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = debtReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5438A9811B5EBBE50027E39C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5438A9821B5EBBE60027E39C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		5438A9A51B5EBD1C0027E39C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				542AEA7B1B619A8A000ED83D /* DBRLayers.swift */,
 				54CEBCC71B6133D400BB43CA /* DBRColors.swift */,
 				54D5C3E11B60602B009A8CF9 /* LendBorrow.swift */,
 				5438A9A91B5ECB6F0027E39C /* Money.swift */,
@@ -263,6 +266,7 @@
 				5438A9861B5EBBE60027E39C /* debtReminder.xcdatamodeld in Sources */,
 				5438A9B31B6017DB0027E39C /* AllDebtsTableViewCell.swift in Sources */,
 				5438A9AC1B5ECB6F0027E39C /* Money.swift in Sources */,
+				542AEA7C1B619A8A000ED83D /* DBRLayers.swift in Sources */,
 				5438A9B11B5FCBC40027E39C /* NewDebtCreationViewController.swift in Sources */,
 				54CEBCC81B6133D400BB43CA /* DBRColors.swift in Sources */,
 				5438A9831B5EBBE60027E39C /* AppDelegate.swift in Sources */,

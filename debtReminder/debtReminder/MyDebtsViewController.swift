@@ -15,13 +15,19 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var buttonBorrow: UIButton!
     
     var myDebtsList : NSArray?
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadTableViewData()
+        
         
         self.tableViewAllDebts.dataSource = self
         self.tableViewAllDebts.delegate = self
+        self.loadTableViewData()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: "loadTableViewData", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableViewAllDebts.addSubview(refreshControl)
         
         self.setViewLayout()
         // Do any additional setup after loading the view.
@@ -32,9 +38,7 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.loadTableViewData()
-    }
+    
     
     func setViewLayout()
     {
