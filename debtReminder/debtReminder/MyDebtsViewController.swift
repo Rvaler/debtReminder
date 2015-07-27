@@ -14,7 +14,7 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var buttonLend: UIButton!
     @IBOutlet weak var buttonBorrow: UIButton!
     
-    var myDebtsList : NSArray?
+    var myDebtsList : [AnyObject]?
     var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -76,23 +76,23 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if let debtsList = self.myDebtsList
         {
-            let debtObject: LendBorrow? = myDebtsList?.objectAtIndex(indexPath.row) as? LendBorrow
+            let debtObject: LendBorrow = debtsList[indexPath.row] as! LendBorrow
             let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("allDebtsCell") as! AllDebtsTableViewCell
             
             var debtDescriptionString : String!
-            if(debtObject?.debtFlag == true){
+            if(debtObject.debtFlag == true){
                 debtDescriptionString = "Borrowed"
             }else{
                 debtDescriptionString = "Lent"
             }
             
             //moneyObject
-            if let moneyObject = debtObject?.relationMoney
+            if let moneyObject = debtObject.relationMoney
             {
                 debtCell.labelDebtItem.text = "\(debtDescriptionString) R$ \(moneyObject.value.stringValue)"
             }
             //itemObject
-            else if let itemObject = debtObject?.relationItem
+            else if let itemObject = debtObject.relationItem
             {
                 if let cellImage = itemObject.itemImage
                 {
@@ -104,7 +104,7 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
             debtCell.imageViewDebtImage.backgroundColor = UIColor.grayColor()
             debtCell.imageViewDebtImage.layer.cornerRadius = 10
             debtCell.imageViewDebtImage.clipsToBounds = true
-            debtCell.labelInDebtPerson.text = debtObject?.toFromWho
+            debtCell.labelInDebtPerson.text = debtObject.toFromWho
             return debtCell
             
         }else{
@@ -115,10 +115,29 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete
+        {
+        
+            myDebtsList?.removeAtIndex(indexPath.row)
+            tableViewAllDebts.deleteRowsAtIndexPaths([indexPath.row], withRowAnimation: UITableViewRowAnimation.Fade)
+            self.tableViewAllDebts.reloadData()
+        }
+    }
+    
     func loadTableViewData()
     {
-        self.myDebtsList = LendBorrow.loadDebts()
-        self.tableViewAllDebts.reloadData()
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            // do some task
+            self.myDebtsList = LendBorrow.loadDebts()
+            dispatch_async(dispatch_get_main_queue()) {
+                self.tableViewAllDebts.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+        }
+        
     }
     
     //MARK: - Button Actions

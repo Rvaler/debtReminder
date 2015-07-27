@@ -15,8 +15,8 @@ class LendBorrow: NSManagedObject {
     @NSManaged var reminder: NSDate
     @NSManaged var toFromWho: String
     @NSManaged var debtFlag: NSNumber // TRUE = borrowing, FALSE = lending
-    @NSManaged var relationItem: Item
-    @NSManaged var relationMoney: Money
+    @NSManaged var relationItem: Item?
+    @NSManaged var relationMoney: Money?
 
     static func getClassName() -> String{
         return "LendBorrow"
@@ -25,7 +25,7 @@ class LendBorrow: NSManagedObject {
     static func createDebtWithItem(item: Item?, money: Money?, inToFromWho: String, inReminder: NSDate?, inDebt: Bool){
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedObjectContext: NSManagedObjectContext! = appDelegate.managedObjectContext
+        let managedObjectContext = appDelegate.managedObjectContext!
         
         var newDebt: LendBorrow = NSEntityDescription.insertNewObjectForEntityForName(self.getClassName(), inManagedObjectContext: managedObjectContext) as! LendBorrow
         
@@ -45,10 +45,12 @@ class LendBorrow: NSManagedObject {
         var err:NSErrorPointer = nil
         let fetchRequest = NSFetchRequest(entityName: self.getClassName())
         managedObjectContext.save(err)
+
+
         
     }
     
-    static func loadDebts() -> NSArray?
+    static func loadDebts() -> [AnyObject]?
     {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedObjectContext: NSManagedObjectContext! = appDelegate.managedObjectContext
@@ -57,7 +59,7 @@ class LendBorrow: NSManagedObject {
         var err: NSErrorPointer = nil
         
         var fetchRequest = NSFetchRequest(entityName: self.getClassName())
-        var debtsArray:NSArray? = managedObjectContext.executeFetchRequest(fetchRequest, error: err)
+        var debtsArray:[AnyObject]? = managedObjectContext.executeFetchRequest(fetchRequest, error: err)
         
         if let debts = debtsArray
         {
