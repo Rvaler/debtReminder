@@ -142,25 +142,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="to/from who" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YNZ-ws-R3f">
-                                <rect key="frame" x="184" y="138" width="232" height="30"/>
+                                <rect key="frame" x="25" y="138" width="550" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="232" id="6B9-eD-WpR"/>
                                     <constraint firstAttribute="height" constant="30" id="KtJ-Gd-8pI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="how much" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RLr-OG-h5M">
-                                <rect key="frame" x="184" y="176" width="232" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="qn5-11-ZYC"/>
-                                    <constraint firstAttribute="width" constant="232" id="tPO-bu-FC0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6B9-eD-WpR"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_Camera" translatesAutoresizingMaskIntoConstraints="NO" id="ysw-Pb-jPf">
-                                <rect key="frame" x="156" y="179" width="100" height="100"/>
+                                <rect key="frame" x="25" y="179" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="21e-oJ-w02"/>
                                     <constraint firstAttribute="width" constant="100" id="U9g-87-Vsn"/>
@@ -181,16 +177,21 @@
                                 </connections>
                             </segmentedControl>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g06-BQ-hMH">
-                                <rect key="frame" x="264" y="214" width="152" height="30"/>
+                                <rect key="frame" x="133" y="214" width="442" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fO9-kp-CNq"/>
                                     <constraint firstAttribute="width" constant="152" id="hcZ-Jq-H4q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hcZ-Jq-H4q"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Gt-82-X8M" userLabel="photoPickerButton">
-                                <rect key="frame" x="156" y="179" width="100" height="100"/>
+                                <rect key="frame" x="25" y="179" width="100" height="100"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -198,12 +199,32 @@
                                     <action selector="actionPickPhoto:" destination="Scc-KQ-Kt5" eventType="touchUpInside" id="phw-g1-B9A"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="how much" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RLr-OG-h5M">
+                                <rect key="frame" x="25" y="176" width="550" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qn5-11-ZYC"/>
+                                    <constraint firstAttribute="width" constant="232" id="tPO-bu-FC0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tPO-bu-FC0"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="8Gt-82-X8M" firstAttribute="leading" secondItem="RLr-OG-h5M" secondAttribute="leading" id="1DI-r7-KV6"/>
                             <constraint firstItem="RLr-OG-h5M" firstAttribute="trailing" secondItem="g06-BQ-hMH" secondAttribute="trailing" id="1Lx-hm-fj8"/>
+                            <constraint firstItem="RLr-OG-h5M" firstAttribute="leading" secondItem="8Gt-82-X8M" secondAttribute="trailing" constant="-156" id="2jM-X6-HNO"/>
+                            <constraint firstItem="g06-BQ-hMH" firstAttribute="leading" secondItem="8Gt-82-X8M" secondAttribute="trailing" constant="8" id="5Je-fF-UyV"/>
+                            <constraint firstAttribute="trailing" secondItem="RLr-OG-h5M" secondAttribute="trailing" constant="25" id="5Kn-pu-SVL"/>
+                            <constraint firstAttribute="trailing" secondItem="YNZ-ws-R3f" secondAttribute="trailing" constant="25" id="7xS-Cz-pEo"/>
                             <constraint firstItem="ysw-Pb-jPf" firstAttribute="top" secondItem="YNZ-ws-R3f" secondAttribute="bottom" constant="11" id="8Ub-66-EyZ"/>
                             <constraint firstItem="ysw-Pb-jPf" firstAttribute="width" secondItem="8Gt-82-X8M" secondAttribute="width" id="9Eq-Fq-aia"/>
+                            <constraint firstItem="YNZ-ws-R3f" firstAttribute="leading" secondItem="NaJ-HL-aNH" secondAttribute="leading" constant="25" id="A0a-om-OU3"/>
                             <constraint firstItem="ysw-Pb-jPf" firstAttribute="height" secondItem="8Gt-82-X8M" secondAttribute="height" id="P4x-th-yXI"/>
                             <constraint firstItem="Yqu-g4-UOH" firstAttribute="top" secondItem="5cB-yM-0Y4" secondAttribute="bottom" constant="19" id="PsR-bZ-myT"/>
                             <constraint firstItem="g06-BQ-hMH" firstAttribute="leading" secondItem="ysw-Pb-jPf" secondAttribute="trailing" constant="8" id="ZzI-Gx-Kig"/>
@@ -211,11 +232,18 @@
                             <constraint firstAttribute="centerX" secondItem="Yqu-g4-UOH" secondAttribute="centerX" id="g4F-7U-YED"/>
                             <constraint firstItem="ysw-Pb-jPf" firstAttribute="centerX" secondItem="8Gt-82-X8M" secondAttribute="centerX" id="l4j-hb-EYv"/>
                             <constraint firstItem="RLr-OG-h5M" firstAttribute="top" secondItem="YNZ-ws-R3f" secondAttribute="bottom" constant="8" id="oBQ-G7-hoB"/>
+                            <constraint firstItem="RLr-OG-h5M" firstAttribute="leading" secondItem="NaJ-HL-aNH" secondAttribute="leading" constant="25" id="qKw-BB-zr1"/>
                             <constraint firstItem="ysw-Pb-jPf" firstAttribute="centerY" secondItem="g06-BQ-hMH" secondAttribute="centerY" id="rjt-vp-roR"/>
                             <constraint firstAttribute="centerX" secondItem="RLr-OG-h5M" secondAttribute="centerX" id="sdK-PB-U5g"/>
                             <constraint firstItem="ysw-Pb-jPf" firstAttribute="centerY" secondItem="8Gt-82-X8M" secondAttribute="centerY" id="tw0-Yb-5HK"/>
                             <constraint firstAttribute="centerX" secondItem="YNZ-ws-R3f" secondAttribute="centerX" id="wpR-1b-V4y"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2jM-X6-HNO"/>
+                                <exclude reference="ZzI-Gx-Kig"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="nBQ-xW-Yqb">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="DkA-Wd-APd">
