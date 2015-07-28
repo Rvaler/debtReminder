@@ -22,7 +22,6 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.tableViewAllDebts.dataSource = self
         self.tableViewAllDebts.delegate = self
-        self.loadTableViewData()
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: "loadTableViewData", forControlEvents: UIControlEvents.ValueChanged)
         self.tableViewAllDebts.addSubview(refreshControl)
@@ -36,6 +35,11 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        self.loadTableViewData()
     }
     
     
@@ -76,38 +80,46 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         if let debtsList = self.myDebtsList
         {
-            let debtObject: LendBorrow = debtsList[indexPath.row] as! LendBorrow
-            let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("allDebtsCell") as! AllDebtsTableViewCell
-            
-            var debtDescriptionString : String!
-            if(debtObject.debtFlag == true){
-                debtDescriptionString = "Borrowed"
-            }else{
-                debtDescriptionString = "Lent"
-            }
-            
-            //moneyObject
-            if let moneyObject = debtObject.relationMoney
+            if debtsList.count != 0
             {
-                debtCell.labelDebtItem.text = "\(debtDescriptionString) R$ \(moneyObject.value.stringValue)"
-            }
-            //itemObject
-            else if let itemObject = debtObject.relationItem
-            {
-                if let cellImage = itemObject.itemImage
-                {
-                    debtCell.imageViewDebtImage.image = UIImage(data: cellImage)
+                let debtObject: LendBorrow = debtsList[indexPath.row] as! LendBorrow
+                let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("allDebtsCell") as! AllDebtsTableViewCell
+                
+                var debtDescriptionString : String!
+                if(debtObject.debtFlag == true){
+                    debtDescriptionString = "Borrowed"
+                }else{
+                    debtDescriptionString = "Lent"
                 }
-                debtCell.labelDebtItem.text = "\(debtDescriptionString) \(itemObject.itemName)"
+                
+                //moneyObject
+                if let moneyObject = debtObject.relationMoney
+                {
+                    debtCell.labelDebtItem.text = "\(debtDescriptionString) R$ \(moneyObject.value.stringValue)"
+                }
+                    //itemObject
+                else if let itemObject = debtObject.relationItem
+                {
+                    if let cellImage = itemObject.itemImage
+                    {
+                        debtCell.imageViewDebtImage.image = UIImage(data: cellImage)
+                    }
+                    debtCell.labelDebtItem.text = "\(debtDescriptionString) \(itemObject.itemName)"
+                }
+                
+                debtCell.imageViewDebtImage.backgroundColor = UIColor.grayColor()
+                debtCell.imageViewDebtImage.layer.cornerRadius = 10
+                debtCell.imageViewDebtImage.clipsToBounds = true
+                debtCell.labelInDebtPerson.text = debtObject.toFromWho
+                return debtCell
+            }else{
+                // TODO: create empty debt cell
+                let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("reuse identifier") as? UITableViewCell
+                debtCell!.backgroundColor = UIColor.clearColor()
+                return debtCell!
             }
-            
-            debtCell.imageViewDebtImage.backgroundColor = UIColor.grayColor()
-            debtCell.imageViewDebtImage.layer.cornerRadius = 10
-            debtCell.imageViewDebtImage.clipsToBounds = true
-            debtCell.labelInDebtPerson.text = debtObject.toFromWho
-            return debtCell
-            
         }else{
+            
             let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("reuse identifier") as? UITableViewCell
             debtCell!.backgroundColor = UIColor.clearColor()
             return debtCell!
