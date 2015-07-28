@@ -97,9 +97,9 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
                 {
                     debtCell.labelDebtItem.text = "\(debtDescriptionString) $\(moneyObject.value.stringValue)"
                     if debtObject.debtFlag == true{
-                        debtCell.imageViewDebtImage.image = UIImage(named: "image_RedDebt")
+                        debtCell.imageViewDebtImage.image = UIImage(named: "image_RedMoney")
                     }else{
-                        debtCell.imageViewDebtImage.image = UIImage(named: "image_GreenDebt")
+                        debtCell.imageViewDebtImage.image = UIImage(named: "image_GreenMoney")
                     }
                 }
                     //itemObject

@@ -56,6 +56,8 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
         imageViewItemImage.layer.cornerRadius = 15
         imageViewItemImage.clipsToBounds = true
         
+        buttonPhotoPicker.setBackgroundImage(UIImage(named: "image_Camera"), forState: UIControlState.Normal)
+        
         otherPersonUnderline = DBRLayers.DBRcreateUnderline(textFieldOtherPerson, color: DBRColors.DBRBlackColor)
         self.setMoneyViewLayout()
         self.textFieldOtherPerson.becomeFirstResponder()
@@ -150,20 +152,17 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
                     let imageData:NSData = UIImageJPEGRepresentation(imageItem, 0.6)
                     itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: imageData)
                 }else{
-                    itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: nil)
+                    if self.debtFlag == true{
+                        let imageData:NSData = UIImageJPEGRepresentation(UIImage(named: "image_RedNoImage"), 0.6)
+                        itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: imageData)
+                    }else{
+                        let imageData:NSData = UIImageJPEGRepresentation(UIImage(named: "image_GreenNoImage"), 0.6)
+                        itemObject = Item.createItemWithName(textFieldItemDescription.text, inImage: imageData)
+                    }
                 }
                 
                 let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
                 LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: self.textFieldOtherPerson.text, inReminder: nil, inDebt: self.debtFlag!)
-//                dispatch_async(dispatch_get_global_queue(priority, 0)) {
-//                    // do some task
-//                    println("salvando")
-//                    LendBorrow.createDebtWithItem(itemObject, money: nil, inToFromWho: self.textFieldOtherPerson.text, inReminder: nil, inDebt: self.debtFlag!)
-//                    print("acabou")
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        // update some UI
-//                    }
-//                }
                 
             default:
                 break
@@ -217,6 +216,7 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        self.buttonPhotoPicker.setBackgroundImage(nil, forState: UIControlState.Normal)
         imageViewItemImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
     
