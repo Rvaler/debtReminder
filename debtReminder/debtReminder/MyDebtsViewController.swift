@@ -20,11 +20,9 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.tableViewAllDebts.dataSource = self
         self.tableViewAllDebts.delegate = self
         self.loadTableViewData()
-        
         self.refreshControl = UIRefreshControl()
         self.refreshControl.addTarget(self, action: "loadTableViewData", forControlEvents: UIControlEvents.ValueChanged)
         self.tableViewAllDebts.addSubview(refreshControl)
@@ -32,6 +30,8 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         self.setViewLayout()
         // Do any additional setup after loading the view.
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -68,7 +68,7 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
         {
             return debtsList.count
         }else{
-            return 1
+            return 0
         }
     }
     
@@ -108,20 +108,22 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
             return debtCell
             
         }else{
-            
-            let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("reuse identifier") as! AllDebtsTableViewCell
-            debtCell.backgroundColor = UIColor.clearColor()
-            return debtCell
+            let debtCell = tableViewAllDebts.dequeueReusableCellWithIdentifier("reuse identifier") as? UITableViewCell
+            debtCell!.backgroundColor = UIColor.clearColor()
+            return debtCell!
         }
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete
         {
-        
-            myDebtsList?.removeAtIndex(indexPath.row)
-            tableViewAllDebts.deleteRowsAtIndexPaths([indexPath.row], withRowAnimation: UITableViewRowAnimation.Fade)
-            self.tableViewAllDebts.reloadData()
+            if let debtToDelete: AnyObject = myDebtsList?[indexPath.row]
+            {
+                LendBorrow.deleteDebt(debtToDelete as! LendBorrow)
+                myDebtsList?.removeAtIndex(indexPath.row)
+                tableViewAllDebts.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+                self.tableViewAllDebts.reloadData()
+            }
         }
     }
     

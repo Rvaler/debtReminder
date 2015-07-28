@@ -46,7 +46,16 @@ class LendBorrow: NSManagedObject {
         let fetchRequest = NSFetchRequest(entityName: self.getClassName())
         managedObjectContext.save(err)
 
-
+    }
+    
+    static func deleteDebt(debt: LendBorrow)
+    {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedObjectContext: NSManagedObjectContext! = appDelegate.managedObjectContext
+        
+        managedObjectContext.deleteObject(debt)
+        var err:NSErrorPointer = nil
+        managedObjectContext.save(err)
         
     }
     
