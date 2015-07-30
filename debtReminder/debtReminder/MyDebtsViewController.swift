@@ -95,7 +95,9 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
                 //moneyObject
                 if let moneyObject = debtObject.relationMoney
                 {
-                    debtCell.labelDebtItem.text = "\(debtDescriptionString) $\(moneyObject.value.stringValue)"
+                    let moneyValue = (moneyObject.value.stringValue as NSString).floatValue
+                    let moneyText = String(format: "%.2f", moneyValue)
+                    debtCell.labelDebtItem.text = "\(debtDescriptionString) $\(moneyText)"
                     if debtObject.debtFlag == true{
                         debtCell.imageViewDebtImage.image = UIImage(named: "image_RedMoney")
                     }else{
@@ -156,14 +158,11 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.refreshControl.endRefreshing()
             }
         }
-        
     }
     
     //MARK: - Button Actions
 
     @IBAction func actionLendSomething(sender: AnyObject) {
-        //self.prepareForSegue("segueCreateNewDebt", sender: self)
-        
         performSegueWithIdentifier("segueCreateNewDebt", sender: sender)
     }
     

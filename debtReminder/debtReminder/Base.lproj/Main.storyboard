@@ -148,7 +148,7 @@
                                     <constraint firstAttribute="height" constant="30" id="KtJ-Gd-8pI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="6B9-eD-WpR"/>
@@ -170,7 +170,7 @@
                                 </constraints>
                                 <segments>
                                     <segment title="Money"/>
-                                    <segment title="Stuff"/>
+                                    <segment title="Object"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentSelectedDebtValueChanged:" destination="Scc-KQ-Kt5" eventType="valueChanged" id="q4B-4Q-jnl"/>

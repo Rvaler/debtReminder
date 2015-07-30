@@ -220,6 +220,9 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
         imageViewItemImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     }
     
+    //MAKE - textField methods
+    
+
     
     /*
     // MARK: - Navigation
