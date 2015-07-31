@@ -60,6 +60,7 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
         
         otherPersonUnderline = DBRLayers.DBRcreateUnderline(textFieldOtherPerson, color: DBRColors.DBRBlackColor)
         self.setMoneyViewLayout()
+        self.setEnableCreateDebtButton()
         self.textFieldOtherPerson.becomeFirstResponder()
     }
     
@@ -116,6 +117,7 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
     
     @IBAction func segmentSelectedDebtValueChanged(sender: AnyObject) {
         
+        self.setEnableCreateDebtButton()
         switch segmentControlSelectedDebt.selectedSegmentIndex
         {
         case 0:
@@ -184,6 +186,47 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
         }
     }
     
+    //MARK - Control Methods
+    
+    func setEnableCreateDebtButton()
+    {
+        if self.enableCreateDebt(){
+            self.barButtonCreate.enabled = true
+            self.barButtonCreate.tintColor.colorWithAlphaComponent(1.0)
+        }else{
+            self.barButtonCreate.enabled = false
+            self.barButtonCreate.tintColor.colorWithAlphaComponent(0.5)
+        }
+    }
+    
+    func enableCreateDebt() -> Bool
+    {
+        if(self.textFieldOtherPerson.text != "")
+        {
+            switch segmentControlSelectedDebt.selectedSegmentIndex
+            {
+            case 0:
+                // Money Debt Selected
+                if(self.textFieldDebtMoneyValue.text != "")
+                {
+                    return true
+                }
+                return false
+            case 1:
+                // Stuff Debt Selected
+                if(self.textFieldItemDescription.text != ""){
+                    return true
+                }
+                return false
+            default:
+                break
+            }
+        }else{
+            return false
+        }
+        return false
+    }
+    
     // returns true if everythings ok
     func checkFiledFields() -> Bool
     {
@@ -222,6 +265,17 @@ class NewDebtCreationViewController: UIViewController, UIImagePickerControllerDe
     
     //MAKE - textField methods
     
+    @IBAction func textFieldOtherPersonDidChanged(sender: AnyObject) {
+        self.setEnableCreateDebtButton()
+    }
+    
+    @IBAction func textFieldDebtMoneyValueDidChanged(sender: AnyObject) {
+        self.setEnableCreateDebtButton()
+    }
+    
+    @IBAction func textFieldItemDescriptionDidChanged(sender: AnyObject) {
+        self.setEnableCreateDebtButton()
+    }
 
     
     /*
