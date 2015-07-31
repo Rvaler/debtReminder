@@ -46,7 +46,7 @@ class MyDebtsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func setViewLayout()
     {
-        self.navigationItem.title = "Debt Reminder"
+        self.navigationItem.title = "Lent Reminder"
         
         self.tableViewAllDebts.separatorColor = DBRColors.DBRBlackColor
         self.tableViewAllDebts.backgroundColor = UIColor.clearColor()
